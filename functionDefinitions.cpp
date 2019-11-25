@@ -38,3 +38,16 @@ bool waterPlant(bool needsWater) { ... }
 void displayInfo(...) { ... }
 
 //Might need to: determine how much water plant needs, how much light plant needs
+
+//Read soil moisture
+int readMoisture() { ... }
+
+//Read temperature
+int readTemp() { ... } 
+
+//Read humidity
+int readHumidity() { ... }
+
+//Read ambient light
+int readLight() { ... }
+
