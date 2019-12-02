@@ -23,5 +23,5 @@ while True:
     
     chan = AnalogIn(mcp, MCP.P1)
     print('PR Raw ADC Value: ', chan.value)
-    print('PR ADC Voltage: ' + str(chan.voltage) + 'V')
+    print('PR ADC Voltage: ' + str(chan.voltage) + 'V\n')
     time.sleep(1)
