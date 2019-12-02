@@ -15,5 +15,5 @@ while True:
   # read temperature from the temperature sensor
   temp = ss.get_temp()
   
-  print("temp: " + str(temp) + " moisture: " + str(touch)
+  print("temp: " + str(temp) + " moisture: " + str(touch))
   time.sleep(1)
