@@ -1,9 +1,9 @@
+import time
 import busio
 import digitalio
 import board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
-import time
 
 # create the spi bus
 spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -18,9 +18,10 @@ while True:
     chan = AnalogIn(mcp, MCP.P0)
  
     print('FSR Raw ADC Value: ', chan.value)
-    print('FSR ADC Voltage: ' + str(chan.voltage) + 'V')
+    print('FSR ADC Voltage: ' + str(chan.voltage) + 'V\n')
     time.sleep(1)
     
     chan = AnalogIn(mcp, MCP.P1)
     print('PR Raw ADC Value: ', chan.value)
     print('PR ADC Voltage: ' + str(chan.voltage) + 'V')
+    time.sleep(1)
