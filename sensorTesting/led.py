@@ -4,10 +4,11 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.OUT) 
+PIN = 17
+GPIO.setup(PIN, GPIO.OUT) 
 
 while True:
-  GPIO.output(17,GPIO.HIGH) //led array on
+  GPIO.output(PIN, GPIO.HIGH) //led array on
   time.sleep(5)
-  GPIO.output(18,GPIO.LOW) //led array off
+  GPIO.output(PIN, GPIO.LOW) //led array off
   time.sleep(5)
