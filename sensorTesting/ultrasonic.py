@@ -5,13 +5,13 @@ GPIO.setmode(GPIO.BCM)
 TRIG = 27
 ECHO = 22
 
-GPIO.setup(TRIG,GPIO.OUT)
-GPIO.setup(ECHO,GPIO.IN)
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
 
-GPIO.output(TRIG, False) //ensure we're starting low
+GPIO.output(TRIG, False) #ensure we're starting low
 time.sleep(2)
 
-GPIO.output(TRIG, True) //pulse signal
+GPIO.output(TRIG, True) #pulse signal
 time.sleep(0.00001)
 GPIO.output(TRIG, False)
 
@@ -24,4 +24,4 @@ while GPIO.input(ECHO)==1:
 pulse_duration = pulse_end - pulse_start
 distance = pulse_duration x 17150
 distance = round(distance, 2)
-print "Distance:",distance,"cm"
+print "Distance:", distance, "cm"
