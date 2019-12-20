@@ -13,7 +13,7 @@ def main():
   time.sleep(5)
   
   turnOnLED()
-  time.sleep(5)
+  time.sleep(15) #allow LED to blink a few times
   
   testLCD()
   time.sleep(5)
