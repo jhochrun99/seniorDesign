@@ -12,5 +12,4 @@ setup(name='plantLyfe',
   install_requires=['Adafruit_DHT', 'Adafruit_Nokia_LCD', 'Adafruit_GPIO', 
                     'adafruit_mcp3xxx', 'adafruit_seesaw', 'board', 
                     'digitalio', 'busio', 'RPi','Adafruit_BBIO'], 
-      #need to edit these with the libraries we installed and import
 )
