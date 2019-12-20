@@ -1,8 +1,6 @@
 #includes all basic function calls from plantLyfe for an example showing
 
-from plantLyfe
-import turnOnLED, turnOnMotor, getSoilReading, getHumidityReading, getFSRandPRreading, testLCD
-import time
+from plantLyfe import *
 
 def main(): 
   getHumidityReading()
