@@ -1,4 +1,4 @@
-# seniorDesign
+# Plant Lyfe
 NYU Tandon Fall 19-Spring 20 Computer Engineering Senior Design project
 
 The library includes functions to use all compononents in PlantLyfe. demo.py includes examples of calling each function in the library. This code should be run in Python 3.
