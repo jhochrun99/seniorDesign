@@ -1,0 +1,6 @@
+plantLyfe.py
+setup.py
+plantLyfe.egg-info/PKG-INFO
+plantLyfe.egg-info/SOURCES.txt
+plantLyfe.egg-info/dependency_links.txt
+plantLyfe.egg-info/top_level.txt
