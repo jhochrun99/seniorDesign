@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <title>PlantLyfe</title>
+</head>
+<nav>
+    <ul>
+        <li>Home</li>
+        <li>Add Plant</li>
+        <li>Logout</li> 
+    </ul>
+</nav>
+<body>
+    <h1>Plants</h1>
+    <div>
+        <h2>Basil</h2>
+        <h4><b>Soil: </b>{{soil}}</h4>
+        <h4><b>Temperature: </b>{{temp}}</h4>
+        <h4><b>Humidity: </b>{{hum}}%</h4>
+        <h4><b>Light Needs: </b>{{light}}</h4>
+        <h4><b>Water Level: </b>{{water}}</h4>
+    </div>
+</body>
+
+<style>
+/* Navigation */
+
+nav {
+   background-color: #00aa00;
+   color: #FFFFFF;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0px;
+}
+
+li {
+    display: inline;
+    padding: 10px;
+}
+
+li:hover:not(active) {
+    background-color: #008800;
+}
+
+/* Body */
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #00aa00;
+    font-size: 3.0em;
+}
+
+/* Plant Entries */
+
+div {
+    border: 1vw solid #00aa00;
+    display: inline-block;
+    height: 40vh;
+    width: 33vw;
+    margin: 10vh 5vw;
+    text-align: center;
+}
+
+h2 {
+    background-color: #00aa00;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 5px 0;
+}
+</style>
+</html>
