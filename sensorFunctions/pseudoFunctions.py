@@ -14,7 +14,7 @@ def refillWaterCheck(float fsrReading):
   return fsrReading <= 55
   
 #returns -1 if temp is too low, 1 if temp is too high, 0 if neutral
-def plantTempCheck(float temperature):
+def tempCheck(float temperature):
   if(temperature >= 80):
     return 1
   else if(temperature < 70):
@@ -24,6 +24,6 @@ def plantTempCheck(float temperature):
     
 #returns false if humidity is too low (dry)
 #value is guessed based on data sheet, humidity should be RH % value, lower % = drier
-def plantHumidityCheck(float humidity):
+def humidityCheck(float humidity):
   if(humidity < 55):
     return false;
