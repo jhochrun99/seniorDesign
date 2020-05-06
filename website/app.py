@@ -17,23 +17,27 @@ humidity = 0
 light_needs = 0
 water_level = 0
 
-device_id = 1
-
 @app.route("/")
 def home():
     # Do some operations to find these values
     # take_measurements(0)
+
+    global sun_options, soil_options
+
     with sqlite3.connect("plantlyfeDB.db") as conn:
         c = conn.cursor()
-        c.execute("SELECT * FROM Plants")
+        c.execute("SELECT * FROM Plants WHERE active=1")
         current_plant = c.fetchone()
         print(current_plant)
         if (current_plant != None):
             plantName = current_plant[0]
+            plantInfo = (sun_options[current_plant[2]], soil_options[current_plant[3]], current_plant[4], current_plant[5])
         else:
             plantName = "No current plant"
-        plantMeasurement = (soil, temperature, humidity, light_needs, water_level)
-    return render_template('index.html', plantName=plantName, plantData=plantMeasurement, plantNeeds=current_plant)
+            plantInfo = None
+        plantMeasurement = (current_plant[1], soil, temperature, humidity, light_needs, water_level)
+        log_measurement(soil, temperature, humidity, light_needs, water_level)
+    return render_template('index.html', plantName=plantName, plantData=plantMeasurement, plantNeeds=plantInfo)
 
 @app.route("/newplant")
 def addplant():
@@ -61,9 +65,9 @@ def newplantentry():
                 plantID = 1
             
             # Sets previously active entries to be false
-            # c.execute("UPDATE Plants SET active=FALSE WHERE active=TRUE")
+            c.execute("UPDATE Plants SET active=0 WHERE active=1")
 
-            entry = (plantName, plantID, sunlight, soilMoisture, lowestTemp, highestTemp, "TRUE")
+            entry = (plantName, plantID, sunlight, soilMoisture, lowestTemp, highestTemp, 1)
             c.execute("INSERT INTO Plants VALUES (?, ?, ?, ?, ?, ?, ?)", entry)
             conn.commit()
     else:
@@ -74,7 +78,7 @@ def newplantentry():
 def editplant():
     with sqlite3.connect("plantlyfeDB.db") as conn:
         c = conn.cursor()
-        c.execute("SELECT * FROM Plants")
+        c.execute("SELECT * FROM Plants WHERE active=1")
         current_plant = c.fetchone()
         print(current_plant)
         if (current_plant != None):
@@ -103,8 +107,26 @@ def editplantentry():
             conn.commit()
 
     return redirect("/")
+
+@app.route("/deleteplant")
+def deleteplant():
+    with sqlite3.connect("plantlyfeDB.db") as conn:
+            c = conn.cursor()
+            c.execute("UPDATE Plants SET active=0 WHERE active=1")
+            conn.commit()
+    return redirect("/")
+
 # @app.route("/logout")
 # def logout():
+
+def log_measurement(soil, humidity, temperature, water_level, light_needs):
+    with sqlite3.connect("plantlyfeDB.db") as conn:
+        c = conn.cursor()
+        c.execute("SELECT * FROM Plants WHERE active=1")
+        current_plant = c.fetchone()
+        measurement = (current_plant[1], soil, humidity, temperature, water_level, light_needs, time.strftime('%Y-%m-%d %H:%M:%S'))
+        c.execute("INSERT INTO PlantMeasurements VALUES (?, ?, ?, ?, ?, ?, ?)", measurement)
+        conn.commit()
 
 # TO DO: Create database with users, users plants, and plant data
 # TO DO: When loading home, update values reading from "sensors"
@@ -112,7 +134,7 @@ def editplantentry():
 # TO DO: Add plant feature
 # TO DO: Login feature
 def take_measurements(sleep_time):
-    global soil, humidity, temperature, water_level, light_needs, device_id
+    global soil, humidity, temperature, water_level, light_needs
     while True:
         soil  = round(getSoilReading(), 2)
         humidity, temperature = getHumidityTemperatureReading()

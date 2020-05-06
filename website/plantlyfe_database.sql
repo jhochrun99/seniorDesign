@@ -5,7 +5,7 @@ CREATE TABLE Plants(
     soilMoisture INT,
     lowestTemp INT,
     highestTemp INT,
-    active BOOLEAN,
+    active BIT,
     PRIMARY KEY (plantID)
 );
 
