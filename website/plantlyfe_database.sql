@@ -1,18 +1,15 @@
-CREATE TABLE User(
-    username VARCHAR(20),
-    password CHAR(64),
-    PRIMARY KEY (username)
-);
-
 CREATE TABLE Plants(
-    plantOwner VARCHAR(20),
     plantName VARCHAR(20),
     plantID INT,
-    PRIMARY KEY (plantID),
-    FOREIGN KEY (plantOwner) REFERENCES User(username)
+    sunlight INT,
+    soilMoisture INT,
+    lowestTemp INT,
+    highestTemp INT,
+    active BOOLEAN,
+    PRIMARY KEY (plantID)
 );
 
-CREATE TABLE PlantInfo(
+CREATE TABLE PlantMeasurements(
     plantID INT,
     soil INT,
     temperature INT,

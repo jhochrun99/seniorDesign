@@ -4,20 +4,30 @@
 </head>
 <nav>
     <ul>
-        <li>Home</li>
-        <li>Add Plant</li>
-        <li>Logout</li> 
+        <a href="/"><li>Home</li></a>
+        <li><a href="/newplant">New Plant</a></li>
+        <li><a href="/editplant">Edit Plant</a></li>
+        <li><a href="/deleteplant">Delete Plant</a></li>
     </ul>
 </nav>
 <body>
-    <h1>Plants</h1>
+    <h1>{{plantName}}</h1>
     <div>
-        <h2>Basil</h2>
-        <h4><b>Soil: </b>{{soil}}</h4>
-        <h4><b>Temperature: </b>{{temp}}</h4>
-        <h4><b>Humidity: </b>{{hum}}%</h4>
-        <h4><b>Light Needs: </b>{{light}}</h4>
-        <h4><b>Water Level: </b>{{water}}</h4>
+        <h2>Measurements</h2>
+        <h4><b>Soil: </b>{{plantData[0]}}</h4>
+        <h4><b>Temperature: </b>{{plantData[1]}}</h4>
+        <h4><b>Humidity: </b>{{plantData[2]}}%</h4>
+        <h4><b>Light Needs: </b>{{plantData[3]}}</h4>
+        <h4><b>Water Level: </b>{{plantData[4]}}</h4>
+    </div>
+    <div>
+        <h2>Plant Settings</h2>
+        <h4><b>Sunlight Needs: </b> {{plantNeeds[2]}}</h4>
+        <h4><b>Soil Moisture: </b> {{plantNeeds[3]}}</h4>
+        <h4><b>Temperature Range: </b> {{plantNeeds[4]}} - {{plantNeeds[5]}}</h4>
+    </div>
+    <div>
+        <h2>Manual Control</h2>
     </div>
 </body>
 
@@ -40,8 +50,13 @@ li {
     padding: 10px;
 }
 
-li:hover:not(active) {
+li:hover {
     background-color: #008800;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 /* Body */
