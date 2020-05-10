@@ -32,11 +32,13 @@ def home():
         if (current_plant != None):
             plantName = current_plant[0]
             plantInfo = (sun_options[current_plant[2]], soil_options[current_plant[3]], current_plant[4], current_plant[5])
+            plantMeasurement = (current_plant[1], soil, temperature, humidity, light_needs, water_level)
+            log_measurement(soil, temperature, humidity, light_needs, water_level)
         else:
             plantName = "No current plant"
             plantInfo = None
-        plantMeasurement = (current_plant[1], soil, temperature, humidity, light_needs, water_level)
-        log_measurement(soil, temperature, humidity, light_needs, water_level)
+            plantMeasurement = (0, soil, temperature, humidity, light_needs, water_level)
+        
     return render_template('index.html', plantName=plantName, plantData=plantMeasurement, plantNeeds=plantInfo)
 
 @app.route("/newplant")
