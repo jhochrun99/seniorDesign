@@ -30,6 +30,8 @@
         </div>
         <div class="grid_item">
             <h2>Manual Control</h2>
+            <button>Water Plant</button>
+            <button>Turn On Light</buttom>
         </div>
     </div>
 </body>
@@ -81,7 +83,7 @@ h1 {
     display:grid;
     grid-gap: 50px;
     padding: 50px;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .grid_item {
@@ -100,6 +102,12 @@ p {
     font-size: 0.75em;
     text-align: left;
     padding-left: 10px;
+}
+
+button {
+    padding: 10px;
+    margin: 20px;
+    font-size: 1.0em;
 }
 
 </style>

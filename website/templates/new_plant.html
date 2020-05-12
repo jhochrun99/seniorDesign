@@ -11,14 +11,23 @@
     </ul>
 </nav>
 <body>
-    <form action="/newplantentry" method="POST" enctype = "multipart/form-data">
-        <h1>Add New Plant</h1>
+    <h1>Add New Plant</h1>
+    <form action="/newplantentry" method="POST" enctype = "multipart/form-data">  
         <h3>Plant Name</h3>
         <input type="text" name = "plantName" placeholder="ex. Basil" required/></br>
+        <h3>Plant Settings:</h3>
+        <p><i>Select presets for common plants, or choose custom to choose your own settings.</i></p>
+        <select id="preset">
+            <option value="custom">Custom</option>
+            <option value="parsley">Parsley</option>
+            <option value="basil">Basil</option>
+            <option value="chives">Chives</option>
+            <option value="mint">Mint</option>
+        </select>
         <h3>Sunlight Needs</h3>
-        <input type="range" min="0" max="3" step="1" name="sunlight" value="1"/> </br>
+        Full Sun<input type="range" min="0" max="3" step="1" name="sunlight" value="1"/>Full Shade </br>
         <h3>Soil Moisture</h3>
-        <input type="range" min="0" max="2" step="1" name="soilMoisture" value="1"/> </br>
+        Moist<input type="range" min="0" max="2" step="1" name="soilMoisture" value="1"/>Dry</br>
         <h3>Temperature Range (optional)</h3>
         <input type="text" name="lowestTemp" placeholder="40">
         <p> - </p>
@@ -69,20 +78,11 @@
     
     /* Plant Entries */
     
-    div {
-        border: 1vw solid #00aa00;
-        display: inline-block;
-        height: 40vh;
-        width: 33vw;
-        margin: 10vh 5vw;
-        text-align: center;
+    form {
+        margin: 0 150px;
+        padding: 20px;
+        border: 8px solid #00aa00;
     }
-    
-    h2 {
-        background-color: #00aa00;
-        color: #FFFFFF;
-        margin: 0;
-        padding: 5px 0;
-    }
+
     </style>
     </html>
