@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+    <title>PlantLyfe</title>
+</head>
+<nav>
+    <ul>
+        <a href="/"><li>Home</li></a>
+        <li><a href="/newplant">New Plant</a></li>
+        <li><a href="/editplant">Edit Plant</a></li>
+        <li><a href="/deleteplant">Delete Plant</a></li>
+    </ul>
+</nav>
+<body>
+    <h1>Edit Plant Needs</h1>
+    <form action="/editplantentry" method="POST" enctype = "multipart/form-data">
+        <h3>Plant Name</h3>
+        <input type="text" name = "plantName" value= {{plantName}} required/></br>
+        <h3>Plant Settings:</h3>
+        <p><i>Select presets for common plants, or choose custom to choose your own settings.</i></p>
+        <select id="preset">
+            <option value="custom">Custom</option>
+            <option value="parsley">Parsley</option>
+            <option value="basil">Basil</option>
+            <option value="chives">Chives</option>
+            <option value="mint">Mint</option>
+        </select>
+        <h3>Sunlight Needs</h3>
+        Full Sun<input type="range" min="0" max="3" step="1" name="sunlight" value="{{plantNeeds[2]}}"/>Full Shade </br>
+        <h3>Soil Moisture</h3>
+        Moist<input type="range" min="0" max="2" step="1" name="soilMoisture" value="{{plantNeeds[3]}}"/>Dry </br>
+        <h3>Temperature Range (optional)</h3>
+        <input type="text" name="lowestTemp" value={{plantNeeds[4]}}>
+        <p> - </p>
+        <input type="text" name="highestTemp" value={{plantNeeds[5]}}></br>
+        <input type="hidden" name="plantID" value={{plantNeeds[1]}}>
+        <input type="hidden" name="plantName" value={{plantNeeds[0]}}>
+        <input type="submit" value = "Save Plant Changes"/>
+    </form>
+</body>
+<style>
+    /* Navigation */
+    
+    nav {
+       background-color: #00aa00;
+       color: #FFFFFF;
+    }
+    
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 10px 0px;
+    }
+    
+    li {
+        display: inline;
+        padding: 10px;
+    }
+    
+    li:hover {
+        background-color: #008800;
+    }
+
+    a:link, a:visited {
+        text-decoration: none;
+        color: #FFFFFF;
+    }
+    
+    /* Body */
+    
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #00aa00;
+        font-size: 3.0em;
+    }
+    
+    /* Plant Entries */
+    
+    form {
+        margin: 0 150px;
+        padding: 20px;
+        border: 8px solid #00aa00;
+    }
+    </style>
+    </html>
