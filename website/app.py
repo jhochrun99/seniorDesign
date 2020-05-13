@@ -149,7 +149,7 @@ def check_actions(sleep_time):
     refillWater(water_level)
     
 def check_light(): #should run every 30 minutes
-    if(gettingLight):
+    if(gettingLight(light_needs)):
         amount_of_light += 0.5
     
     current_time = time.localtime()
