@@ -82,7 +82,7 @@ def getHumidityTemperatureReading():
 
 #code for testing the force sensitive resistor and the photoresistor -------------------
 def getFSRandPRreading():
-  return random.randint(100, 140), random.randint(100, 140)
+  return random.randint(100, 140), random.randint(50, 140)
   # create the spi bus
   spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
   # create the cs (chip select)

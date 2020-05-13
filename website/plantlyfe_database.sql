@@ -14,7 +14,7 @@ CREATE TABLE PlantMeasurements(
     soil INT,
     temperature INT,
     humidity INT,
-    light_needs INT,
+    light_level INT,
     water_level VARCHAR(5),
     measurement_time TIMESTAMP,
     PRIMARY KEY (plantID, measurement_time),
