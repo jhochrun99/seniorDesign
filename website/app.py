@@ -153,13 +153,12 @@ def check_light(): #should run every 30 minutes
         amount_of_light += 0.5
     
     current_time = time.localtime()
-    #if past 8pm, check if plant got enough sunlight for the day. if not, turn on light
-    if(current_time[tm_hour] >= 20 and amount_of_light < 8): #replace 8 with how many of hours of light the plant needs
-        if(!led_on):
-            turnOnLED()
-            led_on = true
-
-    else if(amount_of_light >= light_needs):
+    #if light is off, it's past 8pm, and plant hasn't gotten enough light
+    if(!led_on and current_time[tm_hour] >= 20 and amount_of_light < 8): #replace 8 with how many of hours of light the plant needs
+        turnOnLED()
+        led_on = true
+    #if plant has enough light and led is on
+    else if(amount_of_light >= light_needs and led_on):
         turnOffLED()
         led_on = false
         
