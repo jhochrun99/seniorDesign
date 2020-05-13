@@ -124,5 +124,5 @@ def gettingLight(lightValue):
     print('Plant is getting light)
     return true
   else:
-    #print('Plant is not getting light)
+    print('Plant is not getting light)
     return false
