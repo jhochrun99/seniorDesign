@@ -118,7 +118,7 @@ def refillWater(containerWeight):
       print('container has enough water')
       return false
 
-#more functions as needed
+#code for determining if the plant is currently receiving light ---------------------
 def gettingLight(lightValue):
   if(lightValue > 40):
     print('Plant is getting light)
