@@ -22,6 +22,8 @@ import random
 
 #code for testing the LED array --------------------------------------------------------
 def turnOnLED():
+  print("LED on")
+  return
   GPIO.setmode(GPIO.BCM)
   PIN = 17
   GPIO.setup(PIN, GPIO.OUT) 
@@ -33,6 +35,8 @@ def turnOnLED():
     #time.sleep(5)
     
 def turnOffLED():
+  print("LED off")
+  return
   GPIO.setmode(GPIO.BCM)
   PIN = 17
   GPIO.setup(PIN, GPIO.OUT) 
@@ -113,16 +117,16 @@ def waterPlant(soilMoisture, waterAt):
 def refillWater(containerWeight):
     if(containerWeight <= 65): #value would be based on weight of empty container and FSR reading values
       print('refill water container')
-      return true
-    else
+      return True
+    else:
       print('container has enough water')
-      return false
+      return False
 
 #code for determining if the plant is currently receiving light ---------------------
 def gettingLight(lightValue):
   if(lightValue > 40):
-    print('Plant is getting light)
-    return true
+    print("Plant is getting light")
+    return True
   else:
-    print('Plant is not getting light)
-    return false
+    print("Plant is not getting light")
+    return False

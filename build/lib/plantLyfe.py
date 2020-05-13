@@ -22,6 +22,8 @@ import random
 
 #code for testing the LED array --------------------------------------------------------
 def turnOnLED():
+  print("LED on")
+  return
   GPIO.setmode(GPIO.BCM)
   PIN = 17
   GPIO.setup(PIN, GPIO.OUT) 
@@ -29,6 +31,17 @@ def turnOnLED():
   while True:
     print("LED On") # GPIO.output(PIN, GPIO.HIGH) #led array on
     time.sleep(5)
+    #print("LED Off") # GPIO.output(PIN, GPIO.LOW) #led array off
+    #time.sleep(5)
+    
+def turnOffLED():
+  print("LED off")
+  return
+  GPIO.setmode(GPIO.BCM)
+  PIN = 17
+  GPIO.setup(PIN, GPIO.OUT) 
+  
+  while True:
     print("LED Off") # GPIO.output(PIN, GPIO.LOW) #led array off
     time.sleep(5)
 
@@ -73,7 +86,7 @@ def getHumidityTemperatureReading():
 
 #code for testing the force sensitive resistor and the photoresistor -------------------
 def getFSRandPRreading():
-  return random.randint(100, 140), random.randint(100, 140)
+  return random.randint(100, 140), random.randint(50, 140)
   # create the spi bus
   spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
   # create the cs (chip select)
@@ -94,35 +107,26 @@ def getFSRandPRreading():
   # time.sleep(1)
   return chan_FSR.value, chan_PR.value
 
-#code for testing the LCD ---------------------------------------------------------------
-def testLCD():
-  # Raspberry Pi hardware SPI config:
-  DC = 5
-  RST = 6
-  SPI_PORT = 0
-  SPI_DEVICE = 0
-  
-  disp = LCD.PCD8544(DC, RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=4000000))
-  disp.begin(contrast=40)
-  disp.clear()
-  disp.display()
-  
-  image = Image.new('1', (LCD.LCDWIDTH, LCD.LCDHEIGHT))
-  draw = ImageDraw.Draw(image)
-  draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=255, fill=255)
-  draw.ellipse((2,2,22,22), outline=0, fill=255)
-  draw.rectangle((24,2,44,22), outline=0, fill=255)
-  draw.polygon([(46,22), (56,2), (66,22)], outline=0, fill=255)
-  draw.line((68,22,81,2), fill=0)
-  draw.line((68,2,81,22), fill=0)
-  
-  font = ImageFont.load_default()
-  draw.text((8,30), 'Hello World!', font=font)
-  
-  # Display image.
-  disp.image(image)
-  disp.display()
-  
-  print('Press Ctrl-C to quit.')
-  while True:
-    time.sleep(1.0)
+#code for watering the plant ---------------------------------------------------------
+def waterPlant(soilMoisture, waterAt):
+  if(soilMoisture <= waterAt): #value would be based on soil moisture readings from the soil sensor
+    print('Plant watered')
+    #turnOnMotor() #water the plant
+
+#code for when water container is getting low ----------------------------------------
+def refillWater(containerWeight):
+    if(containerWeight <= 65): #value would be based on weight of empty container and FSR reading values
+      print('refill water container')
+      return True
+    else:
+      print('container has enough water')
+      return False
+
+#code for determining if the plant is currently receiving light ---------------------
+def gettingLight(lightValue):
+  if(lightValue > 40):
+    print("Plant is getting light")
+    return True
+  else:
+    print("Plant is not getting light")
+    return False
