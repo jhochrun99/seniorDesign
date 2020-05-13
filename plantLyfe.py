@@ -107,6 +107,7 @@ def getFSRandPRreading():
 def waterPlant(soilMoisture):
   if(soilMoisture <= 650): #value would be based on soil moisture readings from the soil sensor
     print('Plant watered')
+    #turnOnMotor() #water the plant
 
 #code for when water container is getting low ----------------------------------------
 def refillWater(containerWeight):
@@ -118,4 +119,10 @@ def refillWater(containerWeight):
       return false
 
 #more functions as needed
-    
+def gettingLight(lightValue):
+  if(lightValue > 40):
+    print('Plant is getting light)
+    return true
+  else:
+    print('Plant is not getting light)
+    return false
