@@ -163,12 +163,14 @@ def take_measurements(sleep_time):
         
 def check_actions(sleep_time):
     while True:
+        print("checking water values") 
         waterPlant(soil, soil_values[moisture_needs])
         refillWater(water_level)
         time.sleep(sleep_time)
     
 def check_light(): #should run every 30 minutes
     while True:
+        print("checking light values")
         if(light_level > 45):
             amount_of_light += 0.5
         
