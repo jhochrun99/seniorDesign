@@ -104,14 +104,14 @@ def getFSRandPRreading():
   return chan_FSR.value, chan_PR.value
 
 #code for watering the plant ---------------------------------------------------------
-def waterPlant(soilMoisture):
-  if(soilMoisture <= 650): #value would be based on soil moisture readings from the soil sensor
+def waterPlant(soilMoisture, waterAt):
+  if(soilMoisture <= waterAt): #value would be based on soil moisture readings from the soil sensor
     print('Plant watered')
     #turnOnMotor() #water the plant
 
 #code for when water container is getting low ----------------------------------------
 def refillWater(containerWeight):
-    if(containerWeight <= 650): #value would be based on weight of empty container and FSR reading values
+    if(containerWeight <= 65): #value would be based on weight of empty container and FSR reading values
       print('refill water container')
       return true
     else
