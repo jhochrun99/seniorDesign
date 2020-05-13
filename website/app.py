@@ -17,6 +17,9 @@ humidity = 0
 light_needs = 0
 water_level = 0
 
+amount_of_light = 0 #will be a float corresponding to hours of light, measured in 30 minute intervals 
+led_on = false #keeps track of if LED array has been turned on or not
+
 @app.route("/")
 def home():
     # Do some operations to find these values
@@ -130,10 +133,6 @@ def log_measurement(soil, humidity, temperature, water_level, light_needs):
         c.execute("INSERT INTO PlantMeasurements VALUES (?, ?, ?, ?, ?, ?, ?)", measurement)
         conn.commit()
 
-# TO DO: Create database with users, users plants, and plant data
-# TO DO: When loading home, update values reading from "sensors"
-# TO DO: Log sensor data to database, periodically (x times daily)
-# TO DO: Add plant feature
 # TO DO: Login feature
 def take_measurements(sleep_time):
     global soil, humidity, temperature, water_level, light_needs
@@ -144,6 +143,28 @@ def take_measurements(sleep_time):
         humidity = round(humidity, 2)
         water_level, light_needs = getFSRandPRreading()
         time.sleep(sleep_time)
+        
+def check_actions(sleep_time):
+    waterPlant(soil)
+    refillWater(water_level)
+    
+def check_light(): #should run every 30 minutes
+    if(gettingLight):
+        amount_of_light += 0.5
+    
+    current_time = time.localtime()
+    #if past 8pm, check if plant got enough sunlight for the day. if not, turn on light
+    if(current_time[tm_hour] >= 20 and amount_of_light < light_needs): #assuming light_needs is how many hours of light plant needs
+        if(!led_on):
+            turnOnLED()
+            led_on = true
+
+    else if(amount_of_light >= light_needs):
+        turnOffLED()
+        led_on = false
+        
+def reset_light_count():
+    amount_of_light = 0
         
 if __name__ == "__main__":
     t1 = Thread(target=take_measurements, args=[1])
